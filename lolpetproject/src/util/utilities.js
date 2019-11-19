@@ -15,3 +15,4 @@ export function apiPost(url, data, callback) {
 
 export const rankedEndpoint = "http://localhost:8080/ranked-queues";
 export const matchHistoryEndpoint = "http://localhost:8080/match-history";
+export const matchSpecificEndpoint = "http://localhost:8080/match-specific";

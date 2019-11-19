@@ -5,8 +5,8 @@ export default function Title() {
     <section className="hero is-medium is-light is-bold">
       <div className="hero-body">
         <div className="container">
-          <h1 className="title">Lolstats</h1>
-          <h2 className="subtitle">randomshit</h2>
+          <h1 className="title">TeamSoloGit</h1>
+          <h2 className="subtitle">please stop sending me frontend job ads</h2>
         </div>
       </div>
     </section>

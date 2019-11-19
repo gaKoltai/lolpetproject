@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { apiPost, matchHistoryEndpoint } from "../util/utilities.js";
 import Match from "./Match";
-import { useAsync } from "react-async";
 
-export default function MatchHistory({ summonerName }) {
+export default function MatchHistory(summonerName) {
   const [matchHistory, setMatchHistory] = useState();
 
   useEffect(() => {
-    const fetch = async () => {
+    const fetch = () => {
       apiPost(matchHistoryEndpoint, summonerName, response => {
         setMatchHistory(response);
       });
@@ -17,9 +16,10 @@ export default function MatchHistory({ summonerName }) {
 
   return (
     <div>
-      {matchHistory.match.map(match => {
-        console.log(match);
-      })}
+      {matchHistory &&
+        matchHistory.matches.map(match => {
+          return <Match key={match.gameId} match={match} />;
+        })}
     </div>
   );
 }
