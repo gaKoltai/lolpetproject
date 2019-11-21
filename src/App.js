@@ -14,9 +14,13 @@ function App() {
   if (summonerName != null) {
     return (
       <div>
-        <Title />
-        <MainSearch searchData={getSummonerName} />
-        <MatchHistory summonerName={summonerName} />
+        <div>
+          <Title />
+          <MainSearch searchData={getSummonerName} />
+        </div>
+        <div className="tile is-ancestor">
+          <MatchHistory summonerName={summonerName} />
+        </div>
       </div>
     );
   } else {
