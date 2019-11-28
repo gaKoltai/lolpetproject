@@ -1,0 +1,8 @@
+.site-container {
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  size: 300px;
+}
