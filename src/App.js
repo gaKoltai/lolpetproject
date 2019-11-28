@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import RankedStats from "./components/RankedStats";
 import MatchHistory from "./components/MatchHistory";
 import Title from "./components/Title";
 import MainSearch from "./components/MainSearch";
@@ -12,6 +11,7 @@ function App() {
   };
 
   if (summonerName != null) {
+    console.log(summonerName);
     return (
       <div>
         <div>

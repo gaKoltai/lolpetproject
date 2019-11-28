@@ -41,6 +41,7 @@ export default function Match({ match, champions }) {
         <WinTile
           playerStats={getPlayerStats()}
           championName={getChampionName()}
+          match={match}
         />
       );
     }
@@ -48,6 +49,7 @@ export default function Match({ match, champions }) {
       <LoseTIle
         playerStats={getPlayerStats()}
         championName={getChampionName()}
+        match={match}
       />
     );
   } else {

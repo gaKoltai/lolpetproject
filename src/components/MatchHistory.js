@@ -8,7 +8,7 @@ import {
 import Match from "./Match";
 import MatchDataTitleTile from "./MatchDataTitleTile.js";
 
-export default function MatchHistory(summonerName) {
+export default function MatchHistory({ summonerName }) {
   const [matchHistory, setMatchHistory] = useState();
   const [champions, setChampions] = useState();
 
