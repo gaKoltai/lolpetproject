@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function MatchDataTitleTile() {
+export const MatchDataTitleTile: React.SFC = () => {
   return (
     <div className="tile is-parent box notification">
       <div className="tile is-child">
@@ -23,4 +23,4 @@ export default function MatchDataTitleTile() {
       </div>
     </div>
   );
-}
+};

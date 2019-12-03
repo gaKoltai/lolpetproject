@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import MatchHistory from "./components/MatchHistory";
-import Title from "./components/Title";
+import { MatchHistory } from "./components/MatchHistory";
+import { Title } from "./components/Title";
 import MainSearch from "./components/MainSearch";
 
-function App() {
-  const [summonerName, setSummonerName] = useState();
+const App: React.FC = () => {
+  const [summonerName, setSummonerName] = useState<string | null>();
 
-  const getSummonerName = name => {
-    setSummonerName(name);
+  const getSummonerName = (summonerName: string) => {
+    setSummonerName(summonerName);
   };
 
   if (summonerName != null) {
-    console.log(summonerName);
     return (
       <div>
         <div>
@@ -19,7 +18,7 @@ function App() {
           <MainSearch searchData={getSummonerName} />
         </div>
         <div className="tile is-ancestor">
-          <MatchHistory summonerName={summonerName} />
+          <MatchHistory name={summonerName} />
         </div>
       </div>
     );
@@ -31,6 +30,6 @@ function App() {
       </div>
     );
   }
-}
+};
 
 export default App;

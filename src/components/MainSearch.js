@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 
 export default function MainSearch({ searchData }) {
-  const searchValue = useRef();
+  const searchValue = useRef(null);
 
   const sendSearch = () => {
     searchData(handleSearch);
@@ -12,7 +12,7 @@ export default function MainSearch({ searchData }) {
 
     if (searchPhrase === "") return;
 
-    return { name: searchPhrase };
+    return searchPhrase;
   };
 
   return (

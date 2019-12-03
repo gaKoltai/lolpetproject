@@ -1,4 +1,4 @@
-export function apiPost(url, data, callback) {
+export function apiPost(url: string, data: any, callback: any) {
   fetch(url, {
     method: "POST",
     headers: {
@@ -13,7 +13,7 @@ export function apiPost(url, data, callback) {
     });
 }
 
-export function apiGet(url, callback) {
+export function apiGet(url: string, callback: any) {
   fetch(url, {
     method: "GET"
   })
@@ -23,8 +23,11 @@ export function apiGet(url, callback) {
     });
 }
 
-export const rankedEndpoint = "http://localhost:8080/ranked-queues";
-export const matchHistoryEndpoint = "http://localhost:8080/match-history";
-export const matchSpecificEndpoint = "http://localhost:8080/match-specific";
-export const championData =
+export const rankedEndpoint: string = "http://localhost:8080/ranked-queues";
+export const matchHistoryEndpoint: string =
+  "http://localhost:8080/match-history";
+export const matchSpecificEndpoint: string =
+  "http://localhost:8080/match-specific";
+export const championData: string =
   "http://ddragon.leagueoflegends.com/cdn/9.23.1/data/en_US/champion.json";
+export const matchTypesEndpoint: string = "http://localhost:8080/queue-types";

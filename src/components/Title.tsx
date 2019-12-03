@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Title() {
+export const Title: React.SFC = () => {
   return (
     <section className="hero is-medium is-light is-bold">
       <div className="hero-body">
@@ -11,4 +11,4 @@ export default function Title() {
       </div>
     </section>
   );
-}
+};
