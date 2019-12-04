@@ -1,35 +1,33 @@
 import React, { useState } from "react";
 import { MatchHistory } from "./components/MatchHistory";
 import { Title } from "./components/Title";
+import AdditionalData from "./components/AdditionalData";
+import { Summoner } from "./util/jsonDataInterfaces";
+import { apiPost, summonerEndpoint } from "./util/utilities";
 import MainSearch from "./components/MainSearch";
 
 const App: React.FC = () => {
-  const [summonerName, setSummonerName] = useState<string | null>();
+  const [summoner, setSummoner] = useState<Summoner | null>(null);
 
-  const getSummonerName = (summonerName: string) => {
-    setSummonerName(summonerName);
+  const getSummonerName = (summonerName: string | undefined): void => {
+    apiPost(summonerEndpoint, { name: summonerName }, (response: Summoner) => {
+      setSummoner(response);
+    });
   };
-
-  if (summonerName != null) {
-    return (
-      <div>
-        <div>
-          <Title />
-          <MainSearch searchData={getSummonerName} />
-        </div>
-        <div className="tile is-ancestor">
-          <MatchHistory name={summonerName} />
-        </div>
-      </div>
-    );
-  } else {
-    return (
+  return (
+    <div>
       <div>
         <Title />
         <MainSearch searchData={getSummonerName} />
       </div>
-    );
-  }
+      {summoner && (
+        <div className="tile is-ancestor">
+          <AdditionalData summoner={summoner} />
+          <MatchHistory summoner={summoner} />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default App;

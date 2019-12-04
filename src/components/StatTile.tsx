@@ -14,6 +14,8 @@ interface MatchStats {
   damage: number;
   gold: number;
   championName: string;
+  level: number;
+  timeStamp: number;
 }
 
 export const StatTile: React.FC<MatchStats> = ({
@@ -28,7 +30,9 @@ export const StatTile: React.FC<MatchStats> = ({
   multiKill,
   damage,
   gold,
-  championName
+  championName,
+  level,
+  timeStamp
 }) => {
   let status: string = "";
   if (win) {
@@ -37,19 +41,33 @@ export const StatTile: React.FC<MatchStats> = ({
     status = "is-danger";
   }
 
-  const convertGameLengthToMinutes = () => {
-    let kurvaAnyád = moment(gameLength, "hhmmss");
-    console.log(kurvaAnyád);
-  };
+  const formattedGameLength = (function(): any {
+    return moment.duration(gameLength, "seconds");
+  })();
 
-  convertGameLengthToMinutes();
+  const kda = (function(): string {
+    const rawKda = (kills + assists) / deaths;
+    return rawKda.toFixed(2);
+  })();
+
+  const csMin = (function(): string {
+    const rawCsMin = minionsKilled / (gameLength / 60);
+    return rawCsMin.toFixed(1);
+  })();
+
+  const formattedTimeStamp = moment(timeStamp);
 
   return (
     <div className={"tile is-parent box notification " + status}>
       <div className="tile is-child">
-        <p>{queue}</p>
-        <p>S</p>
-        <p>D</p>
+        {win && <p className="has-text-weight-bold">VICTORY</p>}
+        {!win && <p className="has-text-weight-bold">DEFEAT</p>}
+        <p>
+          {formattedGameLength._data.minutes +
+            "m " +
+            formattedGameLength._data.seconds +
+            "s"}
+        </p>
       </div>
       <div className="tile is-child">
         <figure className="image is-64x64">
@@ -63,22 +81,27 @@ export const StatTile: React.FC<MatchStats> = ({
           ></img>
         </figure>
       </div>
+
       <div className="tile is-child">
         <p>{lane}</p>
+      </div>
+      <div className="tile is-child">
+        <p>Level {level}</p>
+        <p>
+          {minionsKilled} ({csMin}) CS
+        </p>
       </div>
       <div className="tile is-child">
         <p>
           {kills} / {deaths} / {assists}
         </p>
+        <p>{kda} KDA</p>
       </div>
       <div className="tile is-child">
-        <p>{multiKill}</p>
-      </div>
-      <div className="tile is-child">
-        <p>{damage}</p>
-      </div>
-      <div className="tile is-child">
-        <p>{gold}</p>
+        <p className="has-text-weight-bold">
+          {formattedTimeStamp.format("MMM Do")}
+        </p>
+        <p>{formattedTimeStamp.fromNow()}</p>
       </div>
     </div>
   );

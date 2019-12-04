@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { apiPost, matchSpecificEndpoint } from "../util/utilities";
 import { StatTile } from "./StatTile";
-import { MatchInfo, QueueTypes } from "../util/dataInterfaces";
-
+import {
+  MatchInfo,
+  QueueTypes,
+  MatchSpecific,
+  Participant
+} from "../util/jsonDataInterfaces";
 interface RawMatchData {
   match: MatchInfo;
   champions: Object;
@@ -14,17 +18,17 @@ export const Match: React.FC<RawMatchData> = ({
   champions,
   matchTypes
 }) => {
-  const [matchSpecific, setMatchSpecific] = useState<any | null>();
-  const [playerStats, setPlayerStats] = useState();
-  const [championName, setChampionName] = useState();
-  const [matchType, setMatchType] = useState();
+  const [matchSpecific, setMatchSpecific] = useState<MatchSpecific | null>();
+  const [playerStats, setPlayerStats] = useState<Participant | null>();
+  const [championName, setChampionName] = useState<string | null>();
+  const [matchType, setMatchType] = useState<string | null>();
 
   useEffect(() => {
-    const fetch = () => {
+    const fetch = (): void => {
       apiPost(
         matchSpecificEndpoint,
         { matchId: match.gameId },
-        (response: any) => {
+        (response: MatchSpecific) => {
           setMatchSpecific(response);
           getPlayerStats(response);
           getChampionName();
@@ -33,9 +37,9 @@ export const Match: React.FC<RawMatchData> = ({
       );
     };
     fetch();
-  }, []);
+  }, [match]);
 
-  const getPlayerStats = (response: any) => {
+  const getPlayerStats = (response: MatchSpecific): void => {
     const playerChampId: number = match.champion;
 
     for (let participant of response.participants) {
@@ -45,7 +49,7 @@ export const Match: React.FC<RawMatchData> = ({
     }
   };
 
-  const getChampionName = () => {
+  const getChampionName = (): void => {
     const championId: number = match.champion;
 
     for (let champion of Object.values(champions)) {
@@ -55,7 +59,7 @@ export const Match: React.FC<RawMatchData> = ({
     }
   };
 
-  const getMatchType = (response: any) => {
+  const getMatchType = (response: MatchSpecific): void => {
     let queueId = response.queueId;
 
     for (let queueType of Object.values(matchTypes)) {
@@ -69,17 +73,19 @@ export const Match: React.FC<RawMatchData> = ({
     return (
       <StatTile
         minionsKilled={playerStats.stats.totalMinionsKilled}
-        gameLength={playerStats.gameDuration}
+        gameLength={matchSpecific.gameDuration}
         queue={matchType}
         win={playerStats.stats.win}
         championName={championName}
-        lane={match.lane}
+        lane={playerStats.timeline.role}
         kills={playerStats.stats.kills}
         deaths={playerStats.stats.deaths}
         assists={playerStats.stats.assists}
         multiKill={playerStats.stats.largestMultiKill}
         damage={playerStats.stats.totalDamageDealtToChampions}
         gold={playerStats.stats.goldEarned}
+        level={playerStats.stats.champLevel}
+        timeStamp={match.timestamp}
       />
     );
   } else {

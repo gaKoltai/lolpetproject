@@ -1,18 +1,27 @@
 import React, { useRef } from "react";
 
-export default function MainSearch({ searchData }) {
-  const searchValue = useRef(null);
+interface Props {
+  searchData: (summonerName: string | undefined) => void;
+}
 
-  const sendSearch = () => {
-    searchData(handleSearch);
+const MainSearch: React.FC<Props> = ({ searchData }) => {
+  const searchValue = useRef<HTMLInputElement | null>(null);
+
+  const sendSearch = (): void => {
+    const summonerName = handleSearch();
+    searchData(summonerName);
   };
 
-  const handleSearch = () => {
-    const searchPhrase = searchValue.current.value;
+  const handleSearch = (): string | undefined => {
+    if (
+      searchValue &&
+      searchValue.current &&
+      searchValue.current.value !== ""
+    ) {
+      return searchValue.current.value;
+    }
 
-    if (searchPhrase === "") return;
-
-    return searchPhrase;
+    return;
   };
 
   return (
@@ -42,4 +51,6 @@ export default function MainSearch({ searchData }) {
       </div>
     </section>
   );
-}
+};
+
+export default MainSearch;

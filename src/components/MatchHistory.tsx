@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Match } from "./Match";
-import { MatchInfo, QueueTypes } from "../util/dataInterfaces";
 import {
   apiPost,
   matchHistoryEndpoint,
@@ -8,7 +7,12 @@ import {
   apiGet,
   matchTypesEndpoint
 } from "../util/utilities";
-import { MatchDataTitleTile } from "./MatchDataTitleTile";
+import { TitleTile } from "./TitleTile";
+import {
+  MatchInfo,
+  QueueTypes,
+  SummonerData
+} from "../util/jsonDataInterfaces";
 
 interface MatchHistory {
   matches: MatchInfo[];
@@ -21,16 +25,18 @@ export interface SummonerName {
   name: string;
 }
 
-export const MatchHistory: React.FC<SummonerName> = ({ name }) => {
+export const MatchHistory: React.FC<SummonerData> = ({ summoner }) => {
   const [matchHistory, setMatchHistory] = useState<MatchHistory | null>();
   const [champions, setChampions] = useState<any | null>();
   const [matchTypes, setMatchTypes] = useState<QueueTypes[] | null>();
 
+  console.log(summoner.accountId);
+
   useEffect(() => {
-    const fetch = () => {
+    const fetch = (): void => {
       apiPost(
         matchHistoryEndpoint,
-        { name: name },
+        { id: summoner.accountId },
         (response: MatchHistory) => {
           setMatchHistory(response);
         }
@@ -43,12 +49,12 @@ export const MatchHistory: React.FC<SummonerName> = ({ name }) => {
       });
     };
     fetch();
-  }, []);
+  }, [summoner]);
 
   return (
     <div className="tile is-parent">
       <div className="tile is-parent is-vertical box">
-        <MatchDataTitleTile />
+        <TitleTile title={"Match History"} />
         {matchTypes &&
           matchHistory &&
           champions &&
