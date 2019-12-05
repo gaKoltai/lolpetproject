@@ -21,7 +21,7 @@ export const Match: React.FC<RawMatchData> = ({
   const [matchSpecific, setMatchSpecific] = useState<MatchSpecific | null>();
   const [playerStats, setPlayerStats] = useState<Participant | null>();
   const [championName, setChampionName] = useState<string | null>();
-  const [matchType, setMatchType] = useState<string | null>();
+  const [matchType, setMatchType] = useState<QueueTypes | null>();
 
   useEffect(() => {
     const fetch = (): void => {
@@ -64,7 +64,7 @@ export const Match: React.FC<RawMatchData> = ({
 
     for (let queueType of Object.values(matchTypes)) {
       if (queueId === queueType.queueId) {
-        setMatchType(queueType.description);
+        setMatchType(queueType);
       }
     }
   };
@@ -78,6 +78,8 @@ export const Match: React.FC<RawMatchData> = ({
         win={playerStats.stats.win}
         championName={championName}
         lane={playerStats.timeline.role}
+        lane2={playerStats.timeline.lane}
+        lane3={match.role}
         kills={playerStats.stats.kills}
         deaths={playerStats.stats.deaths}
         assists={playerStats.stats.assists}

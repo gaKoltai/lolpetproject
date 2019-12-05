@@ -1,5 +1,6 @@
 import React from "react";
 import { RankedStat } from "../util/jsonDataInterfaces";
+import { formatQueueTypes } from "../util/utilities";
 
 interface Prop {
   stat: RankedStat;
@@ -13,24 +14,25 @@ const RankedStatTile: React.FC<Prop> = ({ stat }) => {
   })();
 
   return (
-    <div className="tile is-ancestor box notification has-background-white-ter">
-      <article className="tile is-child">
+    <div className="tile is-parent box">
+      <div className="tile is-child">
         <figure className="image is-128x128">
           <img
             src={require("../images/rankedIcons/Emblem_" +
               formattedRank +
               ".png")}
             alt="rank"
+            className="ranked-image"
           />
         </figure>
-      </article>
+      </div>
       <div className="tile is-child">
-        <p>
+        <p className="has-text-weight-bold is-size-5-desktop">
           {formattedRank} {stat.rank}
         </p>
-        <p>{stat.queueType}</p>
+        <p>{formatQueueTypes(stat.queueType)}</p>
         <p>
-          {stat.wins}W / {stat.losses}L /{" "}
+          {stat.leaguePoints}LP / {stat.wins}W {stat.losses}L /{" "}
           {((stat.wins / (stat.wins + stat.losses)) * 100).toFixed(2)}%
         </p>
       </div>

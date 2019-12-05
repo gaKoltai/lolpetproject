@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
-.search-bar {
-  size: 300px;
+.searchBar {
+  padding-top: 15%;
+}
+
+.ranked-image {
+  padding: 10%, 10%, 10%, 10%;
 }

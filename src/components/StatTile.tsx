@@ -1,12 +1,16 @@
 import React from "react";
 import moment from "moment";
+import { QueueTypes } from "../util/jsonDataInterfaces";
+import { calculatePosition } from "../util/utilities";
 
 interface MatchStats {
   minionsKilled: number;
   gameLength: number;
-  queue: string;
+  queue: QueueTypes;
   win: boolean;
   lane: string;
+  lane2: string;
+  lane3: string;
   kills: number;
   deaths: number;
   assists: number;
@@ -24,6 +28,8 @@ export const StatTile: React.FC<MatchStats> = ({
   queue,
   win,
   lane,
+  lane2,
+  lane3,
   kills,
   deaths,
   assists,
@@ -57,6 +63,15 @@ export const StatTile: React.FC<MatchStats> = ({
 
   const formattedTimeStamp = moment(timeStamp);
 
+  const position = (function(): string | undefined {
+    const pos = calculatePosition(lane, lane2, queue);
+
+    console.log(pos, lane, lane2);
+    if (typeof pos === undefined) return "FILL";
+
+    return pos;
+  })();
+
   return (
     <div className={"tile is-parent box notification " + status}>
       <div className="tile is-child">
@@ -68,6 +83,10 @@ export const StatTile: React.FC<MatchStats> = ({
             formattedGameLength._data.seconds +
             "s"}
         </p>
+      </div>
+      <div className="tile is-child">
+        <p className="has-text-weight-bold">{queue.description}</p>
+        {queue.notes && <p>{queue.notes}</p>}
       </div>
       <div className="tile is-child">
         <figure className="image is-64x64">
@@ -83,16 +102,21 @@ export const StatTile: React.FC<MatchStats> = ({
       </div>
 
       <div className="tile is-child">
-        <p>{lane}</p>
+        <figure className="image is-64x64">
+          <img
+            src={require("../images/lanes/" + position + ".png")}
+            className="is-rounded"
+          ></img>
+        </figure>
       </div>
       <div className="tile is-child">
-        <p>Level {level}</p>
+        <p className="has-text-weight-bold">Level {level}</p>
         <p>
           {minionsKilled} ({csMin}) CS
         </p>
       </div>
       <div className="tile is-child">
-        <p>
+        <p className="has-text-weight-bold">
           {kills} / {deaths} / {assists}
         </p>
         <p>{kda} KDA</p>

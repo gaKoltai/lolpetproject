@@ -30,8 +30,6 @@ export const MatchHistory: React.FC<SummonerData> = ({ summoner }) => {
   const [champions, setChampions] = useState<any | null>();
   const [matchTypes, setMatchTypes] = useState<QueueTypes[] | null>();
 
-  console.log(summoner.accountId);
-
   useEffect(() => {
     const fetch = (): void => {
       apiPost(
@@ -44,31 +42,30 @@ export const MatchHistory: React.FC<SummonerData> = ({ summoner }) => {
       apiGet(championData, (response: any) => {
         setChampions(response["data"]);
       });
-      apiGet(matchTypesEndpoint, (response: QueueTypes[]) => {
-        setMatchTypes(response);
-      });
     };
     fetch();
   }, [summoner]);
 
+  useEffect(() => {
+    setMatchTypes(require("../util/queueTypes.json"));
+  }, []);
+
   return (
-    <div className="tile is-parent">
-      <div className="tile is-parent is-vertical box">
-        <TitleTile title={"Match History"} />
-        {matchTypes &&
-          matchHistory &&
-          champions &&
-          matchHistory.matches.map((match: MatchInfo) => {
-            return (
-              <Match
-                key={match.gameId}
-                match={match}
-                champions={champions}
-                matchTypes={matchTypes}
-              />
-            );
-          })}
-      </div>
+    <div className="tile is-parent is-vertical box">
+      <TitleTile title={"Match History"} />
+      {matchTypes &&
+        matchHistory &&
+        champions &&
+        matchHistory.matches.map((match: MatchInfo) => {
+          return (
+            <Match
+              key={match.gameId}
+              match={match}
+              champions={champions}
+              matchTypes={matchTypes}
+            />
+          );
+        })}
     </div>
   );
 };

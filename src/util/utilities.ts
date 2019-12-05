@@ -1,3 +1,6 @@
+import { exportDefaultSpecifier } from "@babel/types";
+import { QueueTypes } from "./jsonDataInterfaces";
+
 export function apiPost(url: string, data: any, callback: any): void {
   fetch(url, {
     method: "POST",
@@ -22,6 +25,35 @@ export function apiGet(url: string, callback: any): void {
       callback(jsonresponse);
     });
 }
+
+export function calculatePosition(
+  role: string,
+  lane: string,
+  queue: QueueTypes
+): string | undefined {
+  if (queue.description !== "Normal" && queue.description !== "Ranked") {
+    return "FILL";
+  } else if (lane != "NONE" && lane !== "BOTTOM") {
+    return lane;
+  } else if (lane === "BOTTOM" && role !== "NONE" && role !== "SOLO") {
+    return role;
+  } else if (lane === "NONE" && (role === "DUO" || role === "SOLO")) {
+    return "FILL";
+  } else if (lane === "NONE" && role !== "NONE") {
+    return role;
+  } else {
+    return "FILL";
+  }
+}
+
+export function formatQueueTypes(queueType: string): string | undefined {
+  if (queueType === "RANKED_FLEX_SR") {
+    return "Ranked Flex";
+  } else if (queueType === "RANKED_SOLO_5x5") {
+    return "Ranked Solo/Duo";
+  }
+}
+
 export const rankedEndpoint: string = "http://localhost:8080/ranked-queues";
 export const matchHistoryEndpoint: string =
   "http://localhost:8080/match-history";

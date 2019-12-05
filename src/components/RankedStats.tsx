@@ -23,12 +23,14 @@ export const RankedStats: React.FC<Props> = ({ summonerId }) => {
   const id = require("uuid/v1");
 
   return (
-    <div className="tile is-child">
-      <TitleTile title={"Rank"} />
-      {rankedStats &&
-        rankedStats.map((stat: RankedStat) => {
-          return <RankedStatTile stat={stat} key={id()} />;
-        })}
+    <div className="tile is-parent is-vertial">
+      <div className="tile is-child">
+        <TitleTile title={"Rank"} />
+        {rankedStats &&
+          rankedStats.map((stat: RankedStat) => {
+            return <RankedStatTile stat={stat} key={id()} />;
+          })}
+      </div>
     </div>
   );
 };

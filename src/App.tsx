@@ -14,18 +14,25 @@ const App: React.FC = () => {
       setSummoner(response);
     });
   };
+
+  const style = summoner ? "has-background-white-ter" : "";
+
   return (
     <div>
       <div>
         <Title />
-        <MainSearch searchData={getSummonerName} />
       </div>
-      {summoner && (
-        <div className="tile is-ancestor">
-          <AdditionalData summoner={summoner} />
-          <MatchHistory summoner={summoner} />
+      <div className={style}>
+        <div className="container">
+          <MainSearch searchData={getSummonerName} />
+          {summoner && (
+            <div className="tile is-ancestor">
+              <AdditionalData summoner={summoner} />
+              <MatchHistory summoner={summoner} />
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

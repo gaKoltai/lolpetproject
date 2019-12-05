@@ -5,7 +5,7 @@ import SummonerStats from "./SummonerStats";
 
 const AdditionalData: React.FC<SummonerData> = ({ summoner }) => {
   return (
-    <div className="tile is-child is-vertical">
+    <div className="tile is-child is-vertical box">
       <SummonerStats summoner={summoner} />
       <RankedStats summonerId={summoner.id} />
     </div>
