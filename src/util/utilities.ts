@@ -54,12 +54,12 @@ export function formatQueueTypes(queueType: string): string | undefined {
   }
 }
 
-export const rankedEndpoint: string = "http://localhost:8080/ranked-queues";
+export const rankedEndpoint: string = "https://localhost:5001/api/queues/";
 export const matchHistoryEndpoint: string =
-  "http://localhost:8080/match-history";
+  "https://localhost:5001/api/match-history/";
 export const matchSpecificEndpoint: string =
-  "http://localhost:8080/match-specific";
+  "https://localhost:5001/api/match/";
 export const championData: string =
   "http://ddragon.leagueoflegends.com/cdn/9.23.1/data/en_US/champion.json";
-export const matchTypesEndpoint: string = "http://localhost:8080/queue-types";
-export const summonerEndpoint: string = "http://localhost:8080/summoner";
+//export const matchTypesEndpoint: string = "http://localhost:8080/queue-types";
+export const summonerEndpoint: string = "https://localhost:5001/api/summoner/";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { apiPost, matchSpecificEndpoint } from "../util/utilities";
+import { apiPost, matchSpecificEndpoint, apiGet } from "../util/utilities";
 import { StatTile } from "./StatTile";
 import {
   MatchInfo,
@@ -25,9 +25,8 @@ export const Match: React.FC<RawMatchData> = ({
 
   useEffect(() => {
     const fetch = (): void => {
-      apiPost(
-        matchSpecificEndpoint,
-        { matchId: match.gameId },
+      apiGet(
+        matchSpecificEndpoint + match.gameId,
         (response: MatchSpecific) => {
           setMatchSpecific(response);
           getPlayerStats(response);

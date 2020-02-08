@@ -3,14 +3,14 @@ import { MatchHistory } from "./components/MatchHistory";
 import { Title } from "./components/Title";
 import AdditionalData from "./components/AdditionalData";
 import { Summoner } from "./util/jsonDataInterfaces";
-import { apiPost, summonerEndpoint } from "./util/utilities";
+import { summonerEndpoint, apiGet } from "./util/utilities";
 import MainSearch from "./components/MainSearch";
 
 const App: React.FC = () => {
   const [summoner, setSummoner] = useState<Summoner | null>(null);
 
   const getSummonerName = (summonerName: string | undefined): void => {
-    apiPost(summonerEndpoint, { name: summonerName }, (response: Summoner) => {
+    apiGet(summonerEndpoint + summonerName, (response: Summoner) => {
       setSummoner(response);
     });
   };

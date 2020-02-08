@@ -14,7 +14,7 @@ const SummonerStats: React.FC<SummonerData> = ({ summoner }) => {
                 ".png"
               }
               className="is-rounded"
-            ></img>
+            />
           )}
         </figure>
       </div>

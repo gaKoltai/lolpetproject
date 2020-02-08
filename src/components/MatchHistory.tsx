@@ -4,8 +4,7 @@ import {
   apiPost,
   matchHistoryEndpoint,
   championData,
-  apiGet,
-  matchTypesEndpoint
+  apiGet
 } from "../util/utilities";
 import { TitleTile } from "./TitleTile";
 import {
@@ -32,9 +31,8 @@ export const MatchHistory: React.FC<SummonerData> = ({ summoner }) => {
 
   useEffect(() => {
     const fetch = (): void => {
-      apiPost(
-        matchHistoryEndpoint,
-        { id: summoner.accountId },
+      apiGet(
+        matchHistoryEndpoint + summoner.accountId,
         (response: MatchHistory) => {
           setMatchHistory(response);
         }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { apiPost, rankedEndpoint } from "../util/utilities";
+import { rankedEndpoint, apiGet } from "../util/utilities";
 import { RankedStat } from "../util/jsonDataInterfaces";
 import RankedStatTile from "./RankedStatTile";
 import { TitleTile } from "./TitleTile";
@@ -13,7 +13,7 @@ export const RankedStats: React.FC<Props> = ({ summonerId }) => {
 
   useEffect(() => {
     const fetch = () => {
-      apiPost(rankedEndpoint, { id: summonerId }, (response: RankedStat[]) => {
+      apiGet(rankedEndpoint + summonerId, (response: RankedStat[]) => {
         setRankedStats(response);
       });
     };
