@@ -5,36 +5,26 @@ import AdditionalData from "./components/AdditionalData";
 import { Summoner } from "./util/jsonDataInterfaces";
 import { summonerEndpoint, apiGet } from "./util/utilities";
 import MainSearch from "./components/MainSearch";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import SummonerLandingPage from "./components/SummonerLandingPage";
+import { SummonerProvider } from "./components/context/SummonerProvider";
 
 const App: React.FC = () => {
-  const [summoner, setSummoner] = useState<Summoner | null>(null);
-
-  const getSummonerName = (summonerName: string | undefined): void => {
-    apiGet(summonerEndpoint + summonerName, (response: Summoner) => {
-      setSummoner(response);
-    });
-  };
-
-  const style = summoner ? "has-background-white-ter" : "";
-
-  return (
-    <div>
-      <div>
-        <Title />
-      </div>
-      <div className={style}>
-        <div className="container">
-          <MainSearch searchData={getSummonerName} />
-          {summoner && (
-            <div className="tile is-ancestor">
-              <AdditionalData summoner={summoner} />
-              <MatchHistory summoner={summoner} />
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+    return (
+        <Router>
+            <SummonerProvider>
+                <div>
+                    <Title />
+                </div>
+                <div className="container">
+                    <Switch>
+                        <Route path="/" exact component={MainSearch} />
+                        <Route path="/summoner/:summonerName" component={SummonerLandingPage} />
+                    </Switch>
+                </div>
+            </SummonerProvider>
+        </Router>
+    );
 };
 
 export default App;
