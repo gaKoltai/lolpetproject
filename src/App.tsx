@@ -1,22 +1,27 @@
 import React from "react";
-import { Title } from "./components/Title";
-import MainSearch from "./components/MainSearch";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SummonerLandingPage from "./components/SummonerLandingPage";
 import { SummonerProvider } from "./components/context/SummonerProvider";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/navigation/NavBar";
+import LandingPage from "./components/LandingPage";
+import { SearchValueProvider } from "./components/context/SearchValueProvider";
+import { RegionProvider } from "./components/context/RegionProvider";
 
 const App: React.FC = () => {
     return (
         <Router>
-            <SummonerProvider>
-                <NavBar />
+            <SearchValueProvider>
+                <RegionProvider>
+                    <SummonerProvider>
+                        <NavBar />
 
-                <Switch>
-                    <Route path="/" exact component={MainSearch} />
-                    <Route path="/summoner/:summonerName" component={SummonerLandingPage} />
-                </Switch>
-            </SummonerProvider>
+                        <Switch>
+                            <Route path="/" exact component={LandingPage} />
+                            <Route path="/summoner/:region/:summonerName" component={SummonerLandingPage} />
+                        </Switch>
+                    </SummonerProvider>
+                </RegionProvider>
+            </SearchValueProvider>
         </Router>
     );
 };

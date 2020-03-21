@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { SummonerContext } from "./context/SummonerProvider";
+import { SummonerContext } from "../context/SummonerProvider";
+import PrimaryButton from "../PrimaryButton";
 
 interface Props {}
 
@@ -29,7 +30,7 @@ const NavBar = (props: Props) => {
                     </Link>
                 </div>
             )}
-            <button>Sign up!</button>
+            <PrimaryButton />
         </div>
     );
 };
