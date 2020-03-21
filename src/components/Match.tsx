@@ -1,95 +1,83 @@
 import React, { useState, useEffect } from "react";
-import { apiPost, matchSpecificEndpoint, apiGet } from "../util/utilities";
+import { apiPost, matchSpecificEndpoint, apiGet } from "../static/util/utilities";
 import { StatTile } from "./StatTile";
-import {
-  MatchInfo,
-  QueueTypes,
-  MatchSpecific,
-  Participant
-} from "../util/jsonDataInterfaces";
+import { MatchInfo, QueueTypes, MatchSpecific, Participant } from "../static/util/jsonDataInterfaces";
 interface RawMatchData {
-  match: MatchInfo;
-  champions: Object;
-  matchTypes: QueueTypes[];
+    match: MatchInfo;
+    champions: Object;
+    matchTypes: QueueTypes[];
 }
 
-export const Match: React.FC<RawMatchData> = ({
-  match,
-  champions,
-  matchTypes
-}) => {
-  const [matchSpecific, setMatchSpecific] = useState<MatchSpecific | null>();
-  const [playerStats, setPlayerStats] = useState<Participant | null>();
-  const [championName, setChampionName] = useState<string | null>();
-  const [matchType, setMatchType] = useState<QueueTypes | null>();
+export const Match: React.FC<RawMatchData> = ({ match, champions, matchTypes }) => {
+    const [matchSpecific, setMatchSpecific] = useState<MatchSpecific | null>();
+    const [playerStats, setPlayerStats] = useState<Participant | null>();
+    const [championName, setChampionName] = useState<string | null>();
+    const [matchType, setMatchType] = useState<QueueTypes | null>();
 
-  useEffect(() => {
-    const fetch = (): void => {
-      apiGet(
-        matchSpecificEndpoint + match.gameId,
-        (response: MatchSpecific) => {
-          setMatchSpecific(response);
-          getPlayerStats(response);
-          getChampionName();
-          getMatchType(response);
+    useEffect(() => {
+        const fetch = (): void => {
+            apiGet(matchSpecificEndpoint + match.gameId, (response: MatchSpecific) => {
+                setMatchSpecific(response);
+                getPlayerStats(response);
+                getChampionName();
+                getMatchType(response);
+            });
+        };
+        fetch();
+    }, [match]);
+
+    const getPlayerStats = (response: MatchSpecific): void => {
+        const playerChampId: number = match.champion;
+
+        for (let participant of response.participants) {
+            if (participant.championId === playerChampId) {
+                setPlayerStats(participant);
+            }
         }
-      );
     };
-    fetch();
-  }, [match]);
 
-  const getPlayerStats = (response: MatchSpecific): void => {
-    const playerChampId: number = match.champion;
+    const getChampionName = (): void => {
+        const championId: number = match.champion;
 
-    for (let participant of response.participants) {
-      if (participant.championId === playerChampId) {
-        setPlayerStats(participant);
-      }
+        for (let champion of Object.values(champions)) {
+            if (parseInt(champion.key) === championId) {
+                setChampionName(champion.id);
+            }
+        }
+    };
+
+    const getMatchType = (response: MatchSpecific): void => {
+        let queueId = response.queueId;
+
+        for (let queueType of Object.values(matchTypes)) {
+            if (queueId === queueType.queueId) {
+                setMatchType(queueType);
+            }
+        }
+    };
+
+    if (matchSpecific && playerStats && championName && matchType) {
+        return (
+            <StatTile
+                minionsKilled={playerStats.stats.totalMinionsKilled}
+                gameLength={matchSpecific.gameDuration}
+                queue={matchType}
+                win={playerStats.stats.win}
+                championName={championName}
+                lane={playerStats.timeline.role}
+                lane2={playerStats.timeline.lane}
+                lane3={match.role}
+                kills={playerStats.stats.kills}
+                deaths={playerStats.stats.deaths}
+                assists={playerStats.stats.assists}
+                multiKill={playerStats.stats.largestMultiKill}
+                damage={playerStats.stats.totalDamageDealtToChampions}
+                gold={playerStats.stats.goldEarned}
+                level={playerStats.stats.champLevel}
+                timeStamp={match.timestamp}
+            />
+        );
+    } else {
+        return <div></div>;
     }
-  };
-
-  const getChampionName = (): void => {
-    const championId: number = match.champion;
-
-    for (let champion of Object.values(champions)) {
-      if (parseInt(champion.key) === championId) {
-        setChampionName(champion.id);
-      }
-    }
-  };
-
-  const getMatchType = (response: MatchSpecific): void => {
-    let queueId = response.queueId;
-
-    for (let queueType of Object.values(matchTypes)) {
-      if (queueId === queueType.queueId) {
-        setMatchType(queueType);
-      }
-    }
-  };
-
-  if (matchSpecific && playerStats && championName && matchType) {
-    return (
-      <StatTile
-        minionsKilled={playerStats.stats.totalMinionsKilled}
-        gameLength={matchSpecific.gameDuration}
-        queue={matchType}
-        win={playerStats.stats.win}
-        championName={championName}
-        lane={playerStats.timeline.role}
-        lane2={playerStats.timeline.lane}
-        lane3={match.role}
-        kills={playerStats.stats.kills}
-        deaths={playerStats.stats.deaths}
-        assists={playerStats.stats.assists}
-        multiKill={playerStats.stats.largestMultiKill}
-        damage={playerStats.stats.totalDamageDealtToChampions}
-        gold={playerStats.stats.goldEarned}
-        level={playerStats.stats.champLevel}
-        timeStamp={match.timestamp}
-      />
-    );
-  } else {
-    return <div></div>;
-  }
 };

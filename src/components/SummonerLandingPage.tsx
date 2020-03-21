@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, Fragment } from "react";
 import AdditionalData from "./AdditionalData";
 import { MatchHistory } from "./MatchHistory";
-import { apiGet, summonerEndpoint } from "../util/utilities";
-import { Summoner } from "../util/jsonDataInterfaces";
+import { apiGet, summonerEndpoint } from "../static/util/utilities";
+import { Summoner } from "../static/util/jsonDataInterfaces";
 import { SummonerContext } from "./context/SummonerProvider";
 import { useParams } from "react-router-dom";
 

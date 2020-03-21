@@ -7,19 +7,19 @@ const MainSearch: React.FC = props => {
     const [searchValue, setSearchValue] = useState<null | string>(null);
 
     return (
-        <div className="field has-addons">
-            <div className="control is-expanded">
+        <div className="custom-hero">
+            <div className="main-search">
                 <input
                     type="text"
                     placeholder="Summoner name..."
                     name="name"
-                    className="input is-rounded is-fullwidth is-medium"
                     onChange={e => setSearchValue(e.target.value)}
+                    className="main-search-input"
                 ></input>
             </div>
-            <div className="control">
+            <div>
                 <Link to={`/summoner/${searchValue}`}>
-                    <button className="button is-outlined is-danger is-medium">
+                    <button>
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
                 </Link>
