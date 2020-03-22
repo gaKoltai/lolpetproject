@@ -6,6 +6,7 @@ import NavBar from "./components/navigation/NavBar";
 import LandingPage from "./components/LandingPage";
 import { SearchValueProvider } from "./components/context/SearchValueProvider";
 import { RegionProvider } from "./components/context/RegionProvider";
+import MainPageHero from "./components/MainPageHero";
 
 const App: React.FC = () => {
     return (
@@ -17,7 +18,7 @@ const App: React.FC = () => {
 
                         <Switch>
                             <Route path="/" exact component={LandingPage} />
-                            <Route path="/summoner/:region/:summonerName" component={SummonerLandingPage} />
+                            <Route path="/summoner/:region/:summonerName" component={MainPageHero} />
                         </Switch>
                     </SummonerProvider>
                 </RegionProvider>

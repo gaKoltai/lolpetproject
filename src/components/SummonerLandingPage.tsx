@@ -22,8 +22,6 @@ const SummonerLandingPage = () => {
         fetch();
     }, [summonerName]);
 
-    console.log(summonerName);
-
     return (
         <div className="tile is-ancestor">
             {summoner && (
