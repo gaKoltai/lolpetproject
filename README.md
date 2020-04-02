@@ -28,7 +28,7 @@ This project was bootstrapped with Create React App.
 ### Technologies used:
 
 - [React](https://reactjs.org/)
-- [TypeScript] (https://www.typescriptlang.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Bulma](https://bulma.io/) CSS library.
 - [Styled components](https://styled-components.com/)
 
