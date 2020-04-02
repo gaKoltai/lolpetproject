@@ -2,7 +2,7 @@
 
 ### Goals of the site:
 
-- Provide (yet another) platform where users look up match history and account data of [League of Legends](https://euw.leagueoflegends.com/en-gb/) players from the [RIOT Games API](https://developer.riotgames.com/).
+- Provide (yet another) platform where users are able to look up match history and account data of [League of Legends](https://euw.leagueoflegends.com/en-gb/) players from the [RIOT Games API](https://developer.riotgames.com/).
 - Future plans include displaying more data and statistics about playable characters, game types and ranked game statistics.
 
 ### Motivations for building this project:
