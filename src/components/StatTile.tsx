@@ -66,7 +66,6 @@ export const StatTile: React.FC<MatchStats> = ({
     const position = (function(): string | undefined {
         const pos = calculatePosition(lane, lane2, queue);
 
-        console.log(pos, lane, lane2);
         if (typeof pos === undefined) return "FILL";
 
         return pos;

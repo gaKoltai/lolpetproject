@@ -8,7 +8,7 @@ export const Hero = styled.div`
     width: 100vw;
     /*background: linear-gradient(to top, rgb(39, 54, 82) 0%, rgb(32, 43, 67) 100%);*/
     background-image: url(${require("../static/images/backgrounds/runeterra.jpg")});
-    box-shadow: inset 0 0 0 1000px rgba(32, 43, 67, 0.8);
+    box-shadow: inset 0 0 0 100vmax rgba(32, 43, 67, 0.8);
     background-size: cover;
     display: flex;
     flex-direction: column;
