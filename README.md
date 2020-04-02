@@ -18,7 +18,18 @@
 - Check if port for backend API hosting matches with what is specified in static/util/util.js.
 
 
+###Important :
+
+I am currently reworking the site to use fully custom CSS with styled-components which is not integrated in the master branch as of yet. If you are interested please take a look at the 'trying-styled-components' branch.
+
+
 This project was bootstrapped with Create React App.
+
+### Technologies used:
+
+- [React](https://reactjs.org/)
+- [Bulma](https://bulma.io/) CSS library.
+- [Styled components](https://styled-components.com/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
