@@ -13,9 +13,9 @@
 ### In order to run the website:
 
 -  Please download the backend API from (and follow readme.md) to be able to interact with the RIOT GAMES API due to CORS policy restrictions : https://github.com/gaKoltai/lolpetprojectCSAPI
-Install dependencies : run `npm install` from project root.
-Run the development server with: `npm start`
-Check if port for backend API hosting matches with what is specified in static/util/util.js.
+- Install dependencies : run `npm install` from project root.
+- Run the development server with: `npm start`
+- Check if port for backend API hosting matches with what is specified in static/util/util.js.
 
 
 This project was bootstrapped with Create React App.
