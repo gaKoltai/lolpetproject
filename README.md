@@ -1,3 +1,25 @@
+## Summoner Searcher
+
+### Goals of the site:
+
+- Provide (yet another) platform where users look up match history and account data of [League of Legends](https://euw.leagueoflegends.com/en-gb/) players from the [RIOT Games API](https://developer.riotgames.com/).
+- Future plans include displaying more data and statistics about playable characters, game types and ranked game statistics.
+
+### Motivations for building this project:
+
+- Familiarize myself with various frontend technologies and libraries (React, CSS, Bulma, styled-components).
+
+
+### In order to run the website:
+
+-  Please download the backend API from (and follow readme.md) to be able to interact with the RIOT GAMES API due to CORS policy restrictions : https://github.com/gaKoltai/lolpetprojectCSAPI
+Install dependencies : run `npm install` from project root.
+Run the development server with: `npm start`
+Check if port for backend API hosting matches with what is specified in static/util/util.js.
+
+
+This project was bootstrapped with Create React App.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
