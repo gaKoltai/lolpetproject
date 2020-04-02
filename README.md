@@ -18,7 +18,7 @@
 - Check if port for backend API hosting matches with what is specified in static/util/util.js.
 
 
-###Important :
+### Important :
 
 I am currently reworking the site to use fully custom CSS with styled-components which is not integrated in the master branch as of yet. If you are interested please take a look at the 'trying-styled-components' branch.
 
