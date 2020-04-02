@@ -7,7 +7,7 @@
 
 ### Motivations for building this project:
 
-- Familiarize myself with various frontend technologies and libraries (React, TypeScript, CSS, Bulma, styled-components) as this was my very first attempt at using any of these.
+- Familiarize myself with various frontend technologies and libraries (React, TypeScript, CSS, Bulma, styled-components) as this was my very first attempt at using any of these in a project.
 
 
 ### In order to run the website:
