@@ -20,10 +20,8 @@
 
 ### Important :
 
-I am currently reworking the site to use fully custom CSS with styled-components which is not integrated in the master branch as of yet. If you are interested please take a look at the 'trying-styled-components' branch.
+I am currently reworking the site to use fully custom CSS with styled-components & smaller more universal components -  which is not integrated in the master branch as of yet. If you are interested please take a look at the 'trying-styled-components' branch.
 
-
-This project was bootstrapped with Create React App.
 
 ### Technologies used:
 
