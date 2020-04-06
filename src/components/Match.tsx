@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { apiPost, matchSpecificEndpoint, apiGet } from "../static/util/utilities";
+import React, { useState, useEffect, useContext } from "react";
+import { matchSpecificEndpoint, apiGet } from "../static/util/utilities";
 import { StatTile } from "./StatTile";
 import { MatchInfo, QueueTypes, MatchSpecific, Participant } from "../static/util/jsonDataInterfaces";
+import { RegionContext } from "./context/RegionProvider";
 interface RawMatchData {
     match: MatchInfo;
     champions: Object;
@@ -13,10 +14,11 @@ export const Match: React.FC<RawMatchData> = ({ match, champions, matchTypes }) 
     const [playerStats, setPlayerStats] = useState<Participant | null>();
     const [championName, setChampionName] = useState<string | null>();
     const [matchType, setMatchType] = useState<QueueTypes | null>();
+    const [region, setRegion] = useContext(RegionContext);
 
     useEffect(() => {
         const fetch = (): void => {
-            apiGet(matchSpecificEndpoint + match.gameId, (response: MatchSpecific) => {
+            apiGet(matchSpecificEndpoint + region + "/" + match.gameId, (response: MatchSpecific) => {
                 setMatchSpecific(response);
                 getPlayerStats(response);
                 getChampionName();

@@ -18,7 +18,7 @@ const App: React.FC = () => {
 
                         <Switch>
                             <Route path="/" exact component={LandingPage} />
-                            <Route path="/summoner/:region/:summonerName" component={MainPageHero} />
+                            <Route path="/summoner/:region/:summonerName" component={SummonerLandingPage} />
                         </Switch>
                     </SummonerProvider>
                 </RegionProvider>

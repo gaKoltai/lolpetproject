@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { rankedEndpoint, apiGet } from "../static/util/utilities";
 import { RankedStat } from "../static/util/jsonDataInterfaces";
 import RankedStatTile from "./RankedStatTile";
 import { TitleTile } from "./TitleTile";
+import { RegionContext } from "./context/RegionProvider";
 
 interface Props {
     summonerId: string;
@@ -10,10 +11,11 @@ interface Props {
 
 export const RankedStats: React.FC<Props> = ({ summonerId }) => {
     const [rankedStats, setRankedStats] = useState<RankedStat[] | null>();
+    const [region, setRegion] = useContext(RegionContext);
 
     useEffect(() => {
         const fetch = () => {
-            apiGet(rankedEndpoint + summonerId, (response: RankedStat[]) => {
+            apiGet(rankedEndpoint + region + "/" + summonerId, (response: RankedStat[]) => {
                 setRankedStats(response);
             });
         };

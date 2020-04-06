@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Match } from "./Match";
-import { apiPost, matchHistoryEndpoint, championData, apiGet } from "../static/util/utilities";
+import { matchHistoryEndpoint, championData, apiGet } from "../static/util/utilities";
 import { TitleTile } from "./TitleTile";
 import { MatchInfo, QueueTypes, SummonerData } from "../static/util/jsonDataInterfaces";
+import { RegionContext } from "./context/RegionProvider";
 
 interface MatchHistory {
     matches: MatchInfo[];
@@ -19,10 +20,11 @@ export const MatchHistory: React.FC<SummonerData> = ({ summoner }) => {
     const [matchHistory, setMatchHistory] = useState<MatchHistory | null>();
     const [champions, setChampions] = useState<any | null>();
     const [matchTypes, setMatchTypes] = useState<QueueTypes[] | null>();
+    const [region, setRegion] = useContext(RegionContext);
 
     useEffect(() => {
         const fetch = (): void => {
-            apiGet(matchHistoryEndpoint + summoner.accountId, (response: MatchHistory) => {
+            apiGet(matchHistoryEndpoint + region + "/" + summoner.accountId, (response: MatchHistory) => {
                 setMatchHistory(response);
             });
             apiGet(championData, (response: any) => {

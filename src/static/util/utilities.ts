@@ -57,4 +57,4 @@ export const championData: string = "http://ddragon.leagueoflegends.com/cdn/9.23
 //export const matchTypesEndpoint: string = "http://localhost:8080/queue-types";
 export const summonerEndpoint: string = "http://localhost:5001/api/summoner/";
 
-export const regions: string[] = ["EUW", "EUNE", "NA", "KR", "OCE", "LAN", "LAS"];
+export const regions: string[] = ["EUW", "EUNE", "NA", "KR", "OCE", "BR", "TR", "RU", "JP"];

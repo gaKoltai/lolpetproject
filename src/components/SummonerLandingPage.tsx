@@ -5,6 +5,7 @@ import { apiGet, summonerEndpoint } from "../static/util/utilities";
 import { Summoner } from "../static/util/jsonDataInterfaces";
 import { SummonerContext } from "./context/SummonerProvider";
 import { useParams } from "react-router-dom";
+import { RegionContext } from "./context/RegionProvider";
 
 interface Props {}
 
@@ -12,10 +13,11 @@ const SummonerLandingPage = () => {
     const [summoner, setSummoner] = useContext(SummonerContext);
 
     const { summonerName } = useParams();
+    const [region, setRegion] = useContext(RegionContext);
 
     useEffect(() => {
         const fetch = (): void => {
-            apiGet(summonerEndpoint + summonerName, (response: Summoner) => {
+            apiGet(summonerEndpoint + region + "/" + summonerName, (response: Summoner) => {
                 setSummoner(response);
             });
         };
