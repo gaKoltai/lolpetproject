@@ -1,6 +1,6 @@
 ## Summoner Searcher
 
-![site](https://imgur.com/X9pgsom)
+![site](https://i.imgur.com/X9pgsom.jpg)
 
 ### Goals of the site:
 
