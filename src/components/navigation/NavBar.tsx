@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { SummonerContext } from "../context/SummonerProvider";
-import PrimaryButton from "../PrimaryButton";
-import NavSearchField from "./NavSearchField";
+import PrimaryButton from "./PrimaryButton";
+import SearchWrapper from "../search/SearchWrapper";
 import styled from "styled-components";
+import NavTitle from "./NavTitle";
 
 const StyledNavBar = styled.div`
     width: 100vw;
@@ -29,9 +30,9 @@ const NavBar = (props: Props) => {
 
     return (
         <StyledNavBar>
-            <h1 onClick={() => (window.location.href = "http://localhost:3000")}>KMS</h1>
-            {summoner && <NavSearchField />}
-            <PrimaryButton />
+            <NavTitle />
+            {summoner && <SearchWrapper />}
+            <PrimaryButton>Sing in</PrimaryButton>
         </StyledNavBar>
     );
 };

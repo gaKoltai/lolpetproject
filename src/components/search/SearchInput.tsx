@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, KeyboardEvent } from "react";
 import { SearchValueContext } from "../context/SearchValueProvider";
 import styled from "styled-components";
 
@@ -21,8 +21,20 @@ const StyledSearchInput = styled.input`
     }
 `;
 
-const SearchInput = () => {
+interface Props {
+    customKeyDownEven: () => void;
+}
+
+const SearchInput = (props: Props) => {
     const [searchValue, setSearchValue] = useContext(SearchValueContext);
+
+    const redirectOnKeydown = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            props.customKeyDownEven();
+        }
+
+        return;
+    };
 
     return (
         <Fragment>
@@ -30,8 +42,9 @@ const SearchInput = () => {
                 type="text"
                 placeholder="Search for summoner"
                 name="name"
-                onChange={e => setSearchValue(e.target.value)}
+                onChange={(e) => setSearchValue(e.target.value)}
                 autoComplete="off"
+                onKeyDown={(event) => redirectOnKeydown(event)}
             ></StyledSearchInput>
         </Fragment>
     );
