@@ -6,23 +6,46 @@ export function apiPost(url: string, data: any, callback: any): void {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Accept: "application/json"
+            Accept: "application/json",
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     })
-        .then(response => response.json())
-        .then(jsonresponse => {
+        .then((response) => response.json())
+        .then((jsonresponse) => {
             callback(jsonresponse);
+        });
+}
+
+export function apiGetWithErrorHandling(url: string, callback: any, errorCallback: any): void {
+    fetch(url, {
+        method: "GET",
+    })
+        .then((response) => {
+            if (response.status !== 200) {
+                errorCallback(response);
+            }
+            response.json();
+        })
+        .then((jsonresponse) => {
+            callback(jsonresponse);
+        })
+        .catch((error) => {
+            console.log(error);
         });
 }
 
 export function apiGet(url: string, callback: any): void {
     fetch(url, {
-        method: "GET"
+        method: "GET",
     })
-        .then(response => response.json())
-        .then(jsonresponse => {
+        .then((response) => {
+            response.json();
+        })
+        .then((jsonresponse) => {
             callback(jsonresponse);
+        })
+        .catch((error) => {
+            console.log(error);
         });
 }
 
