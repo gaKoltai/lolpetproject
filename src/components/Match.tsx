@@ -3,6 +3,7 @@ import { matchSpecificEndpoint, apiGet } from "../static/util/utilities";
 import { StatTile } from "./StatTile";
 import { MatchInfo, QueueTypes, MatchSpecific, Participant } from "../static/util/jsonDataInterfaces";
 import { RegionContext } from "./context/RegionProvider";
+
 interface RawMatchData {
     match: MatchInfo;
     champions: Object;
