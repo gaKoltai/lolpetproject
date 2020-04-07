@@ -9,7 +9,7 @@ const StyledHero = styled.div`
     box-shadow: inset 0 0 0 100vmax rgba(32, 43, 67, 0.8);
     background-size: cover;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 0 10vw;
