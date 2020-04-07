@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import SearchWrapper from "../search/SearchWrapper";
 import { Title } from "../Title";
-import { SummonerContext } from "../context/SummonerProvider";
+import { SummonerDataContext } from "../context/SummonerDataProvider";
 
 export const Hero = styled.div`
     min-height: 94vh;
@@ -19,11 +19,13 @@ export const Hero = styled.div`
 `;
 
 const LandingPage = () => {
-    const [summoner, setSummoner] = useContext(SummonerContext);
+
+    const [summoner, setSummoner] = useContext(SummonerDataContext);
 
     useEffect(() => {
         setSummoner("");
     }, []);
+
 
     return (
         <Hero>
