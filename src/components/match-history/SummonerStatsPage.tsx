@@ -1,18 +1,18 @@
 import React, { useContext, useEffect, Fragment, useState } from "react";
-import { SummonerContext } from "../context/SummonerProvider";
 import { useParams } from "react-router-dom";
 import { RegionContext } from "../context/RegionProvider";
-import { summonerEndpoint, apiGetWithErrorHandling } from "../../static/util/utilities";
+import { summonerEndpoint } from "../../static/util/utilities";
 import { Summoner } from "../../static/util/jsonDataInterfaces";
-import AdditionalData from "../AdditionalData";
-import { MatchHistory } from "../MatchHistory";
 import { Hero } from "../index/LandingPage";
 import ErrorPage from "../error-handling/ErrorPage";
+import { SummonerDataContext } from "../context/SummonerDataProvider";
+import axios, { AxiosResponse } from "axios";
+import HistoryContainer from "./HistoryContainer";
 
 interface Props {}
 
 const SummonerStatsPage = (props: Props) => {
-    const [summoner, setSummoner] = useContext(SummonerContext);
+    const [summoner, setSummoner] = useContext(SummonerDataContext);
 
     const { summonerName } = useParams();
     const [region, setRegion] = useContext(RegionContext);
@@ -21,16 +21,12 @@ const SummonerStatsPage = (props: Props) => {
 
     useEffect(() => {
         const fetch = (): void => {
-            apiGetWithErrorHandling(
-                summonerEndpoint + region + "/" + summonerName,
-                (response: Summoner) => {
-                    setSummoner(response);
-                },
-                (response: any) => {
-                    setNotfound(!notFound);
-                    setErrorCode(response.status);
-                }
-            );
+            axios
+                .get(summonerEndpoint + region + "/" + summonerName)
+                .then((response: AxiosResponse<Summoner>) => {
+                    setSummoner(response.data);
+                })
+                .catch(() => setNotfound(true));
         };
         fetch();
     }, [summonerName]);
@@ -40,8 +36,7 @@ const SummonerStatsPage = (props: Props) => {
             {!notFound ? (
                 summoner && (
                     <Fragment>
-                        <AdditionalData summoner={summoner} />
-                        <MatchHistory summoner={summoner} />
+                        <HistoryContainer />
                     </Fragment>
                 )
             ) : (
