@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { SummonerContext } from "../context/SummonerProvider";
 import PrimaryButton from "./PrimaryButton";
 import SearchWrapper from "../search/SearchWrapper";
 import styled from "styled-components";
 import NavTitle from "./NavTitle";
+import { SummonerDataContext } from "../context/SummonerDataProvider";
 
 const StyledNavBar = styled.div`
     width: 100vw;
@@ -26,7 +26,7 @@ const StyledNavBar = styled.div`
 interface Props {}
 
 const NavBar = (props: Props) => {
-    const [summoner, setSummoner] = useContext(SummonerContext);
+    const [summoner, setSummoner] = useContext(SummonerDataContext);
 
     return (
         <StyledNavBar>
