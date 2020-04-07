@@ -4,6 +4,7 @@ import { RankedStat } from "../static/util/jsonDataInterfaces";
 import RankedStatTile from "./RankedStatTile";
 import { TitleTile } from "./TitleTile";
 import { RegionContext } from "./context/RegionProvider";
+import axios, { AxiosResponse } from "axios";
 
 interface Props {
     summonerId: string;
@@ -15,8 +16,8 @@ export const RankedStats: React.FC<Props> = ({ summonerId }) => {
 
     useEffect(() => {
         const fetch = () => {
-            apiGet(rankedEndpoint + region + "/" + summonerId, (response: RankedStat[]) => {
-                setRankedStats(response);
+            axios.get(rankedEndpoint + region + "/" + summonerId).then((response: AxiosResponse<RankedStat[]>) => {
+                setRankedStats(response.data);
             });
         };
         fetch();
