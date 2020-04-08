@@ -1,3 +1,37 @@
+## Summoner Searcher
+
+![site](https://i.imgur.com/X9pgsom.jpg)
+
+### Goals of the site:
+
+- Provide (yet another) platform where users are able to look up match history and account data of [League of Legends](https://euw.leagueoflegends.com/en-gb/) players from the [RIOT Games API](https://developer.riotgames.com/).
+- Future plans include displaying more data and statistics about playable characters, game types and ranked game statistics.
+
+### Motivations for building this project:
+
+- Familiarize myself with various frontend technologies and libraries (React, TypeScript, CSS, Bulma, styled-components) as this was my very first attempt at using any of these in a project.
+
+
+### In order to run the website:
+
+-  Please download the backend API from (and follow readme.md) to be able to interact with the RIOT GAMES API due to CORS policy restrictions : https://github.com/gaKoltai/lolpetprojectCSAPI
+- Install dependencies : run `npm install` from project root.
+- Run the development server with: `npm start`
+- Check if port for backend API hosting matches with what is specified in static/util/util.js.
+
+
+### Important :
+
+I am currently reworking the site to use fully custom CSS with styled-components & smaller more universal components -  which is not integrated in the master branch as of yet. If you are interested please take a look at the 'trying-styled-components' branch.
+
+
+### Technologies used:
+
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Bulma](https://bulma.io/) CSS library.
+- [Styled components](https://styled-components.com/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
