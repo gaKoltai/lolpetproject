@@ -1,91 +1,9 @@
-import { QueueTypes } from "./jsonDataInterfaces";
-import moment from "moment";
-
-export function apiPost(url: string, data: any, callback: any): void {
-    fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-        },
-        body: JSON.stringify(data),
-    })
-        .then((response) => response.json())
-        .then((jsonresponse) => {
-            callback(jsonresponse);
-        });
-}
-
-export function apiGetWithErrorHandling(url: string, callback: any, errorCallback: any): void {
-    fetch(url, {
-        method: "GET",
-    })
-        .then((response) => {
-            if (response.status !== 200) {
-                console.log(response);
-                errorCallback(response);
-            }
-            response.json();
-        })
-        .then((jsonresponse) => {
-            callback(jsonresponse);
-            console.log(jsonresponse);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-}
-
-export function apiGet(url: string, callback: any): void {
-    fetch(url, {
-        method: "GET",
-    })
-        .then((response) => {
-            response.json();
-        })
-        .then((jsonresponse) => {
-            callback(jsonresponse);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-}
-
-export function calculatePosition(role: string, lane: string, queue: QueueTypes): string | undefined {
-    if (queue.description !== "Normal" && queue.description !== "Ranked") {
-        return "FILL";
-    } else if (lane !== "NONE" && lane !== "BOTTOM") {
-        return lane;
-    } else if (lane === "BOTTOM" && role !== "NONE" && role !== "SOLO") {
-        return role;
-    } else if (lane === "NONE" && (role === "DUO" || role === "SOLO")) {
-        return "FILL";
-    } else if (lane === "NONE" && role !== "NONE") {
-        return role;
-    }
-    return "FILL";
-}
-
 export function formatQueueTypes(queueType: string): string | undefined {
     if (queueType === "RANKED_FLEX_SR") {
         return "Ranked Flex";
     } else if (queueType === "RANKED_SOLO_5x5") {
         return "Ranked Solo/Duo";
     }
-}
-
-export function calculateKDA(kills: number, assists: number, deaths: number): string {
-    const rawKda = (kills + assists) / deaths;
-    return rawKda.toFixed(2);
-}
-
-export function formattedGameLength(gameLength: any): any {
-    return moment.duration(gameLength, "seconds");
-}
-
-export function csMin(minionsKilled: any, gameLength: any): string {
-    const rawCsMin = minionsKilled / (gameLength / 60);
-    return rawCsMin.toFixed(1);
 }
 
 export const rankedEndpoint: string = "http://localhost:5001/api/queues/";
