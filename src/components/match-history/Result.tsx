@@ -13,7 +13,7 @@ interface Props {
 
 const Result = (props: Props) => {
     const result = (function () {
-        if (!props.win) {
+        if (props.win) {
             return "Victory";
         }
 
