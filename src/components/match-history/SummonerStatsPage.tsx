@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 import { RegionContext } from "../context/RegionProvider";
 import { summonerEndpoint } from "../../static/util/utilities";
 import { Summoner } from "../../static/util/jsonDataInterfaces";
-import { Hero } from "../index/LandingPage";
+import Hero from "../index/Hero";
 import ErrorPage from "../error-handling/ErrorPage";
 import { SummonerDataContext } from "../context/SummonerDataProvider";
 import axios, { AxiosResponse } from "axios";
 import HistoryContainer from "./HistoryContainer";
+import LoadingSpinner from "../misc/LoadingSpinner";
 
 interface Props {}
 
@@ -33,6 +34,7 @@ const SummonerStatsPage = (props: Props) => {
 
     return (
         <Hero>
+            <LoadingSpinner />
             {!notFound ? (
                 summoner && (
                     <Fragment>
