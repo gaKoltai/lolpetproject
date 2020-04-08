@@ -6,13 +6,14 @@ import axios, { AxiosResponse } from "axios";
 import { SummonerDataContext } from "../context/SummonerDataProvider";
 import { Match } from "./Match";
 import { MatchHistory, QueueTypes, MatchInfo } from "../../static/util/jsonDataInterfaces";
+import { trackPromise } from "react-promise-tracker";
+import LoadingSpinner from "../misc/LoadingSpinner";
 
 const StyledMathHistoryDiv = styled.div`
     display: flex;
     flex-direction: column;
     background-color: rgba(32, 43, 67, 0.8);
     padding: 1.5rem;
-    width: 40%;
     margin: 2rem;
 `;
 
@@ -27,11 +28,11 @@ const HistoryContainer = (props: Props) => {
 
     useEffect(() => {
         const fetch = (): void => {
-            axios
-                .get(matchHistoryEndpoint + region + "/" + summoner.accountId)
-                .then((response: AxiosResponse<MatchHistory>) => {
+            trackPromise(axios.get(matchHistoryEndpoint + region + "/" + summoner.accountId)).then(
+                (response: AxiosResponse<MatchHistory>) => {
                     setMatchHistory(response.data);
-                });
+                }
+            );
             axios.get(championData).then((response: AxiosResponse<any>) => {
                 setChampions(response.data["data"]);
             });
