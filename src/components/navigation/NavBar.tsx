@@ -9,7 +9,6 @@ const StyledNavBar = styled.div`
     width: 100vw;
     height: 6vh;
     display: flex;
-    /*position: fixed;*/
     justify-content: space-between;
     align-items: center;
     padding: 0 2vw;
@@ -32,7 +31,7 @@ const NavBar = (props: Props) => {
         <StyledNavBar>
             <NavTitle />
             {summoner && <SearchWrapper />}
-            <PrimaryButton>Sing in</PrimaryButton>
+            <PrimaryButton>Sign in</PrimaryButton>
         </StyledNavBar>
     );
 };
