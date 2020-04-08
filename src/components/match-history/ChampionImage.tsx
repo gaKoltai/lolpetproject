@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledChampionImage = styled.img`
-    width: 14%;
     height: auto;
     margin: 0.2rem;
+    width: 8%;
 `;
 
 interface Props {
