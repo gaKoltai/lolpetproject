@@ -284,3 +284,34 @@ export interface MatchHistory {
     startIndex: number;
     totalGames: number;
 }
+
+export interface SortedMatchData {
+    kda: number;
+    killParticipation: number;
+    kills: number;
+    assists: number;
+    deaths: number;
+    win: boolean;
+    minionsKilled: number;
+    csPerMin: number;
+    visionScorePerMin: number;
+    damagePerMin: number;
+    damagePercentOfTotal: number;
+    queueId: number;
+    role: string;
+    gameLength: TimeSpan;
+}
+
+export interface TimeSpan {
+    ticks: number;
+    days: number;
+    hours: number;
+    milliseconds: number;
+    minutes: number;
+    seconds: number;
+    totalDays: number;
+    totalHours: number;
+    totalMilliseconds: number;
+    totalMinutes: number;
+    totalSeconds: number;
+}
