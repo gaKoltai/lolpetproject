@@ -14,7 +14,6 @@ const App: React.FC = () => {
                 <SearchValueProvider>
                     <RegionProvider>
                         <NavBar />
-
                         <Switch>
                             <Route path="/" exact component={LandingPage} />
                             <Route path="/summoner/:region/:summonerName" component={SummonerStatsPage} />
