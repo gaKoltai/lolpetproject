@@ -15,7 +15,7 @@ const StyledHero = styled.div`
     display: flex;
     flex-direction: ${(props: StyleProps) => (props.main ? "column" : "row")};
     justify-content: center;
-    align-items: center;
+    align-items: ${(props: StyleProps) => (props.main ? "center" : "flex-start")};
     padding: 0 10vw;
 `;
 
