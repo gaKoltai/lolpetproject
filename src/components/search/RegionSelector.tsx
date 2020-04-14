@@ -11,15 +11,17 @@ const StyledSelect = styled.select`
     font-weight: bold;
     color: white;
     text-align: center;
-    margin: 0 0.5vw;
+    color: rgb(137, 160, 181);
+    padding: 0.2rem;
+    cursor: pointer;
 `;
 
 const RegionSelector: React.FC = () => {
     const [region, setRegion] = useContext(RegionContext);
 
     return (
-        <StyledSelect onChange={e => setRegion(e.target.value)}>
-            {regions.map(region => (
+        <StyledSelect onChange={(e) => setRegion(e.target.value)}>
+            {regions.map((region) => (
                 <option key={region} value={region}>
                     {region}
                 </option>
