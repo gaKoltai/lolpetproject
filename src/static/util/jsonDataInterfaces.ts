@@ -244,7 +244,7 @@ export interface MatchSpecific {
     gameCreation: number;
 }
 
-export interface RankedStat {
+export interface IRankedStat {
     queueType: string;
     summonerName: string;
     hotStreak: boolean;
