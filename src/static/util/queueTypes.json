@@ -81,7 +81,7 @@
     {
         "queueId": 420,
         "map": "Summoner's Rift",
-        "description": "Ranked",
+        "description": "Ranked Solo",
         "notes": "Draft"
     },
     {
@@ -93,7 +93,7 @@
     {
         "queueId": 440,
         "map": "Summoner's Rift",
-        "description": "Flex",
+        "description": "Ranked Flex",
         "notes": "Draft"
     },
     {
