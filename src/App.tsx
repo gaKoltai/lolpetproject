@@ -4,7 +4,7 @@ import NavBar from "./components/navigation/NavBar";
 import LandingPage from "./components/index/LandingPage";
 import { SearchValueProvider } from "./components/context/SearchValueProvider";
 import { RegionProvider } from "./components/context/RegionProvider";
-import SummonerStatsPage from "./components/match-history/SummonerStatsPage";
+import SummonerStatsPage from "./components/summoner-stats/SummonerStatsPage";
 import SummonerDataProvider from "./components/context/SummonerDataProvider";
 
 const App: React.FC = () => {
