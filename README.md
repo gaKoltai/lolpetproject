@@ -2,6 +2,8 @@
 
 ![site](https://i.imgur.com/X9pgsom.jpg)
 
+![summoner](https://i.imgur.com/NBk2EKR.png)
+
 ### Goals of the site:
 
 - Provide (yet another) platform where users are able to look up match history and account data of [League of Legends](https://euw.leagueoflegends.com/en-gb/) players from the [RIOT Games API](https://developer.riotgames.com/).
