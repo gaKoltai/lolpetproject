@@ -26,7 +26,7 @@ const SearchField = styled.div`
 
     &:focus-within {
         background-color: white;
-        height: 6vh;
+        height: ${(props: StyleProps) => (props.large ? "6vh" : "auto")};
 
         & > button {
             color: rgb(244, 67, 72);
