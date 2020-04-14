@@ -6,6 +6,46 @@ export function formatQueueTypes(queueType: string): string | undefined {
     }
 }
 
+export function convertRomanNumtoArabic(romanNum: string): string {
+    switch (romanNum) {
+        case "I":
+            return "1";
+        case "II":
+            return "2";
+        case "III":
+            return "3";
+        case "IV":
+            return "4";
+        default:
+            return "";
+    }
+}
+
+export function getColorByRank(tier: string): string {
+    switch (tier) {
+        case "iron":
+            return "rgb(162, 146, 148)";
+        case "bronze":
+            return "rgb(185, 116, 82)";
+        case "silver":
+            return "rgb(162, 193, 199)";
+        case "gold":
+            return "rgb(241, 166, 78)";
+        case "platinum":
+            return "rgb(99, 183, 180)";
+        case "diamond":
+            return "rgb(116, 141, 249)";
+        case "master":
+            return "rgb(169, 82, 229)";
+        case "grandmaster":
+            return "rgb(239, 79, 79)";
+        case "challenger":
+            return "rgb(244, 200, 116)";
+        default:
+            return "white";
+    }
+}
+
 export const rankedEndpoint: string = "http://localhost:5001/api/queues/";
 export const matchHistoryEndpoint: string = "http://localhost:5001/api/match-history/";
 export const matchSpecificEndpoint: string = "http://localhost:5001/api/match/";
