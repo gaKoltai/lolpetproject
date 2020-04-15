@@ -300,6 +300,8 @@ export interface SortedMatchData {
     queueId: number;
     role: string;
     gameLength: TimeSpan;
+    championId: number;
+    gameId: number;
 }
 
 export interface TimeSpan {

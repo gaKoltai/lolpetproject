@@ -19,17 +19,11 @@ const StyledMatchDiv = styled.div`
     max-height: 4rem;
     color: white;
     border-radius: 4px;
+    border-left: 0.3rem solid ${(props: StyleProps) => (props.win ? "#49b4ff" : "#ff5859")};
     background-color: #182031;
     margin: 0.1rem;
     justify-content: space-between;
-
-    &::before {
-        content: "";
-        width: 0.5rem;
-        background-color: ${(props: StyleProps) => (props.win ? "#49b4ff" : "#ff5859")};
-        border-top-left-radius: 4px;
-        border-bottom-left-radius: 4px;
-    }
+    align-items: flex-start;
 
     & .secondary {
         color: rgb(121, 134, 163);
@@ -37,13 +31,13 @@ const StyledMatchDiv = styled.div`
     }
 `;
 
-interface RawMatchData {
+interface Props {
     match: MatchInfo;
     champions: Object;
     matchTypes: QueueTypes[];
 }
 
-export const Match: React.FC<RawMatchData> = ({ match, champions, matchTypes }) => {
+export const Match = (props: Props) => {
     const [playerStats, setPlayerStats] = useState<SortedMatchData | null>();
     const [championName, setChampionName] = useState<string | null>();
     const [matchType, setMatchType] = useState<QueueTypes | null>();
@@ -52,7 +46,7 @@ export const Match: React.FC<RawMatchData> = ({ match, champions, matchTypes }) 
     useEffect(() => {
         const fetch = (): void => {
             trackPromise(
-                axios.get(`${matchSpecificEndpoint + region}/${match.gameId}?championId=${match.champion}`)
+                axios.get(`${matchSpecificEndpoint + region}/${props.match.gameId}?championId=${props.match.champion}`)
             ).then((response: AxiosResponse<SortedMatchData>) => {
                 setPlayerStats(response.data);
                 getMatchType(response.data);
@@ -63,9 +57,9 @@ export const Match: React.FC<RawMatchData> = ({ match, champions, matchTypes }) 
     }, []);
 
     const getChampionName = (): void => {
-        const championId: number = match.champion;
+        const championId: number = props.match.champion;
 
-        for (let champion of Object.values(champions)) {
+        for (let champion of Object.values(props.champions)) {
             if (parseInt(champion.key) === championId) {
                 setChampionName(champion.id);
             }
@@ -75,7 +69,7 @@ export const Match: React.FC<RawMatchData> = ({ match, champions, matchTypes }) 
     const getMatchType = (response: SortedMatchData): void => {
         let queueId = response.queueId;
 
-        for (let queueType of Object.values(matchTypes)) {
+        for (let queueType of Object.values(props.matchTypes)) {
             if (queueId === queueType.queueId) {
                 setMatchType(queueType);
             }

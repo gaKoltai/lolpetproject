@@ -20,8 +20,6 @@ interface Props {
 }
 
 const RankedImage = (props: Props) => {
-    console.log(props.rank);
-
     return (
         <StyledRankedImageWrapper>
             <img

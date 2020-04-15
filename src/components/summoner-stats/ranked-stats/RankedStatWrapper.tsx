@@ -49,7 +49,6 @@ const RankedStatWrapper = (props: Props) => {
         <StyledRankedStatWrapper>
             {rankedStats && (
                 <Fragment>
-                    {""}
                     <RankedImage tier={rankedStats[0].tier} rank={rankedStats[0].rank} />
                     <RankedStat rankedstats={rankedStats[0]} />
                 </Fragment>
