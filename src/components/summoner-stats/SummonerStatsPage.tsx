@@ -18,7 +18,7 @@ const StyledSummonerStatsDiv = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
-    width: 80%;
+    width: 100%;
 `;
 
 interface Props {}
